@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/baseline_home_24"
+        android:title="About Us"
+        android:checked="true"
+        />
+
+
+    <item
+        android:id="@+id/volunter"
+        android:icon="@drawable/volunter"
+        android:title="Volunters"
+        />
+    <item
+        android:id="@+id/baseline_home_24"
+        android:title=""
+        />
+
+    <item
+        android:id="@+id/events"
+        android:icon="@drawable/baseline_emoji_events_24"
+        android:title="Events"
+        />
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/profile"
+        android:title="Profile"
+       />
+
+
+    </menu>

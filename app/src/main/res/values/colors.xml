@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="AirForceBlue">#00308F</color>
+    <color name="orange">#FFC107</color>
+    <color name="lavender">#E6E6FA</color>
+    <color name="skyBlue">#4CAF50</color>
+    <color name="your_status_bar_color">#FF0000</color>
+
+</resources>
