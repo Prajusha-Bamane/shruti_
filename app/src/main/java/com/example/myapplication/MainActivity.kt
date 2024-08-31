@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
         binding.fabutton.setOnClickListener {
             navigateToInitialFragment()
         }
-
+            // menu button
         binding.menu.setOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(binding.navigation)) {
                 binding.drawerLayout.closeDrawer(binding.navigation)
