@@ -5,10 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.MainActivity
-import com.example.myapplication.R
 import com.example.myapplication.databinding.FragmentAboutusBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.example.myapplication.MainActivity
 
 
 class aboutus : Fragment() {
@@ -30,6 +28,11 @@ lateinit var binding: FragmentAboutusBinding
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
 
 
 }

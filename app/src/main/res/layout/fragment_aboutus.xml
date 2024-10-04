@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:scrollbarThumbVertical="@null"
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,124 +13,102 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- NSS Logo -->
-        <!-- Replace with your actual image file name -->
-
-
-        <!-- Title Text -->
         <ImageView
             android:id="@+id/nss_logo"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:src="@drawable/about"/>
+            android:layout_marginTop="16dp"
+            android:src="@drawable/about"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/service_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SERVICE TO NATION\nSERVICE TO SELF"
+            android:text="@string/service_to_nation_nservice_to_self"
             android:textStyle="bold"
             android:textSize="18sp"
             android:gravity="center"
             android:layout_marginTop="16dp" />
 
-        <!-- About NSS Section -->
+
+
         <TextView
             android:id="@+id/about_nss_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="About NSS"
-            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:text="@string/about_nss"
             android:textSize="18sp"
-            android:layout_marginTop="24dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/about_nss_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="The scheme was launched in Gandhiji's Centenary year-1969.\n\n1) Aimed at developing student's personality through community service.\n\n2) NSS is a voluntary association of young people in Colleges, Universities and at +2 level.\n\n3) The cardinal principle of the NSS programme is to get a sense of involvement in the task of Nation Building.\n\n4) Organized by the students and teachers through their combined participation in community service."
-            android:textSize="16sp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:text="@string/idea"
+            android:textSize="16sp" />
 
-        <!-- Objectives Section -->
         <TextView
             android:id="@+id/objectives_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="OBJECTIVES"
-            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:text="@string/objectives"
             android:textSize="18sp"
-            android:layout_marginTop="24dp" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/objectives_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="To enable the students to understand the community in which they work:\n\n• To understand themselves in relation to their community.\n• To identify the needs and problems of the community and the solution to them.\n• To develop competence required for group living and sharing responsibilities.\n• To acquire leadership qualities and democratic attitude.\n • To encourage national integration and develop the capacity to meet emergencies and
-national disasters."
-            android:textSize="16sp"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:text="@string/idea2"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/nss_motto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="'NOT ME BUT YOU'."
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@android:color/black"
+            android:layout_marginTop="15dp"
             android:gravity="center"
-            android:layout_marginTop="15dp" />
+            android:text="'NOT ME BUT YOU'."
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/nss_aim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="The aim of NSS is to demonstrate this motto in day-to-day programs."
-            android:textSize="16sp"
+            android:layout_marginTop="8dp"
             android:gravity="center"
-            android:layout_marginTop="8dp" />
+            android:text="The aim of NSS is to demonstrate this motto in day-to-day programs."
+            android:textSize="16sp" />
 
-        <!-- Activities Title -->
         <TextView
             android:id="@+id/activities_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="Activities conducted under NSS till date\n"
-            android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_marginTop="24dp" />
+            android:textStyle="bold" />
 
-        <!-- Activity Number -->
         <TextView
             android:id="@+id/activity_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill_horizontal"
+            android:layout_marginTop="8dp"
             android:text="१)  दिनांक 10 फेब्रुवारी, 2023 रोजी शासकीय तंत्रनिकेतन मुंबई राष्ट्रीय सेवा योजना युनिट सेलचे उद्घाटन प्रसंगी संस्थेचे माननीय प्राचार्य
  आणि संबंधित अधिकारीी,कर्मचारी आणि मान्यवर"
-            android:textSize="16sp"
-            android:layout_gravity="fill_horizontal"
-            android:layout_marginTop="8dp" />
+            android:textSize="16sp" />
 
-        <!-- Activity Image -->
         <ImageView
             android:id="@+id/activity_image"
             android:layout_width="600dp"
-            android:layout_height="250dp"
-            android:layout_marginTop="20dp"
-            android:src="@drawable/img" /><!-- Replace with your actual image file name -->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="२)  दिनांक 2 मार्च,2023 रोजी एन.एस.एस. शा. तं.नी.मुंबई स्वयंसेवकांनी एन.एस.एस प्रतिज्ञा घेतली तसेच स्त्री स्वयंसेवकांनी
-जागतिक महिला दिन साजरा केला."
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"/>
-
-        <ImageView
-            android:id="@+id/activity_j"
-            android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/img_3" />
@@ -135,14 +116,14 @@ national disasters."
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="३)  21 मार्च 2023 रोजी जागतिक जलदिनानिमित्त एन.एस.एस शा. तं.नी.मुंबई स्वयंसेवकांनी जल शपथ घेऊन जलसंवर्धनाशी संबंधित
-स्लोगन जलवापरा ठिकाणी लावले."
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="२)  दिनांक 2 मार्च,2023 रोजी एन.एस.एस. शा. तं.नी.मुंबई स्वयंसेवकांनी एन.एस.एस प्रतिज्ञा घेतली तसेच स्त्री स्वयंसेवकांनी
+जागतिक महिला दिन साजरा केला."
+            android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/activity_p"
-            android:layout_width="450dp"
+            android:id="@+id/activity_j"
+            android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
             android:src="@drawable/img_8" />
@@ -150,45 +131,60 @@ national disasters."
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="३)  21 मार्च 2023 रोजी जागतिक जलदिनानिमित्त एन.एस.एस शा. तं.नी.मुंबई स्वयंसेवकांनी जल शपथ घेऊन जलसंवर्धनाशी संबंधित
+स्लोगन जलवापरा ठिकाणी लावले."
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/activity_p"
+            android:layout_width="450dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/img_6" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="४)  जागतिक आरोग्य दिनामनमित्त दिनांक 6 एप्रिल, 2023 रोजी एनएसएस शा. तं.नी.मुंबई युनिट सेल तफे आरोग्याबाबत जनजागृती
 प्रभात फेरी काढण्यात आली."
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/activity_opp"
             android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_6" />
+            android:src="@drawable/img_7" />
 
         <ImageView
             android:id="@+id/activity_op"
             android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_10" />
+            android:src="@drawable/img_4" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:text="५)  दिनांक 15 ऑगस्ट, 2023 रोजी एनजी स्वराज फाउंडेशन आमि एनजी क्लब आयआयटी मुंबई तफे आयोजित क्लायिेट चेंज
 इव्हेंट मध्ये सहभागी एनएसएस शा. तं.नी.मुंबई स्वयंसेवक. यामनमित्त संस्थेला वेदर  क्लॉक वितरीत करण्यात आले."
-            android:textSize="16dp"
-            android:layout_marginTop="20dp"/>
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/activity_1"
             android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_11" />
-
+            android:src="@drawable/img_5"
+            />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="६)  एनएसएस शा. तं.नी. मुंबई युनिट सेल तर्फे दिनांक 18 ऑगस्ट 2023 रोजी परिसरात स्वच्छता मोहीम राबवण्यात आली."
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:layout_marginTop="20dp"/>
 
         <ImageView
@@ -196,16 +192,14 @@ national disasters."
             android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/img_12" />
+            android:src="@drawable/img_13" />
 
         <ImageView
             android:id="@+id/activity_3"
             android:layout_width="400dp"
             android:layout_height="250dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/about" />
-
-
+            android:src="@drawable/img_14" />
 
     </LinearLayout>
 </ScrollView>

@@ -5,6 +5,17 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@color/white</item>
     </style>
-
+    <style name="CircularImageView">
+    <item name="cornerFamily">rounded</item>
+    </style>
     <style name="Theme.MyApplication" parent="Base.Theme.MyApplication" />
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="CircularImageView1">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

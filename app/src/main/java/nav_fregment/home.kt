@@ -6,11 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.myapplication.R
+import com.example.myapplication.databinding.FragmentHomeBinding
 
 
-class volunter : Fragment() {
+class home : Fragment() {
 
-
+lateinit var binding: FragmentHomeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -19,10 +20,9 @@ class volunter : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_volunter, container, false)
+    ): View {
+        binding= FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
-
 
 }

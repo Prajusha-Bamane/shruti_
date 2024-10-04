@@ -2,19 +2,15 @@ package com.example.myapplication
 
 
 import android.content.Intent
-import androidx.fragment.app.FragmentManager
 import androidx.activity.OnBackPressedCallback
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.core.content.ContextCompat
-import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.example.myapplication.databinding.ActivityMainBinding
 import nav_fregment.aboutus
 import nav_fregment.event
+import nav_fregment.home
 import nav_fregment.profile
 import nav_fregment.volunter
 
@@ -27,12 +23,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        fregmemt(home(), true)
+
 
         binding.bottnavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.about -> fregmemt(aboutus(), true)
                 R.id.volunter -> fregmemt(volunter(), false)
-
+                R.id.home -> fregmemt(home(), true)
                 R.id.events -> fregmemt(event(), false)
                 R.id.profile -> fregmemt(profile(), false)
             }
@@ -40,35 +38,32 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        binding.fabutton.setOnClickListener {
-            navigateToInitialFragment()
-        }
+
             // menu button
-        binding.menu.setOnClickListener {
-            if (binding.drawerLayout.isDrawerOpen(binding.navigation)) {
-                binding.drawerLayout.closeDrawer(binding.navigation)
+        binding.toolbar.setOnClickListener {
+            if (binding.drawerLayout.isDrawerOpen(binding.sidemenu)) {
+                binding.drawerLayout.closeDrawer(binding.sidemenu)
             } else {
-                binding.drawerLayout.openDrawer(binding.navigation)
+                binding.drawerLayout.openDrawer(binding.sidemenu)
             }
         }
 
-        // Handle back press using OnBackPressedCallback
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                if (binding.drawerLayout.isDrawerOpen(binding.navigation)) {
-                    binding.drawerLayout.closeDrawer(binding.navigation)
+                if (binding.drawerLayout.isDrawerOpen(binding.sidemenu)) {
+                    binding.drawerLayout.closeDrawer(binding.sidemenu)
                 } else {
                     isEnabled = false
-                    onBackPressedDispatcher.onBackPressed() //Let the system handle the back press
+                    onBackPressedDispatcher.onBackPressed()
                 }
             }
         })
 
-        binding.navigation.setNavigationItemSelectedListener {
+        binding.sidemenu.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_contact ->{
-                    val intent = Intent(this, contact::class.java)
-                    startActivity(intent)
+                        val intent = Intent(this, contact::class.java)
+                        startActivity(intent)
                     true
                 }
                 R.id.nav_support ->{
@@ -80,12 +75,12 @@ class MainActivity : AppCompatActivity() {
                 else -> {false}
             }
         }
+
+
     }
 
-    fun navigateToInitialFragment() {
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        binding.bottnavigation.selectedItemId = R.id.about
-    }
+
+
 
     fun fregmemt(fragment: Fragment, flag: Boolean) {
         val trasnaction = supportFragmentManager.beginTransaction()
@@ -96,4 +91,6 @@ class MainActivity : AppCompatActivity() {
         }
         trasnaction.commit()
     }
+
+
 }

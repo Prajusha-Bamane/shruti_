@@ -4,4 +4,13 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="nss">National Service Scheme</string>
     <string name="pleage">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, \nwhen an unknown printer took a galley of type and scrambled it to make a type specimen book. \nIt has survived not only five centuries, but also the leap into electronic typesetting, \nremaining essentially unchanged. It was popularised in the 1960s with the release of Letraset \nsheets containing Lorem Ipsum passages, and more recently with desktop publishing \nsoftware like Aldus PageMaker including versions of Lorem Ipsum</string>
+    <string name="service_to_nation_nservice_to_self">SERVICE TO NATION\nSERVICE TO SELF</string>
+    <string name="about_nss">About NSS</string>
+    <string name="idea">The scheme was launched in Gandhiji\'s Centenary year-1969.\n\n1) Aimed at developing student\'s personality through community service.\n\n2) NSS is a voluntary association of young people in Colleges, Universities and at +2 level.\n\n3) The cardinal principle of the NSS programme is to get a sense of involvement in the task of Nation Building.\n\n4) Organized by the students and teachers through their combined participation in community service.</string>
+    <string name="objectives">OBJECTIVES</string>
+    <string name="idea2">To enable the students to understand the community in which they work:\n\n• To understand themselves in relation to their community.\n• To identify the needs and problems of the community and the solution to them.\n• To develop competence required for group living and sharing responsibilities.\n• To acquire leadership qualities and democratic attitude.\n • To encourage national integration and develop the capacity to meet emergencies and national disasters.</string>
+    <string name="add_image">Add image</string>
+    <string name="select_event_image">nothing\n</string>
+    <string name="event_image">event_image\n</string>
+
 </resources>

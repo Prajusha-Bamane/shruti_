@@ -16,8 +16,9 @@
         android:title="Volunters"
         />
     <item
-        android:id="@+id/baseline_home_24"
-        android:title=""
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home"
         />
 
     <item

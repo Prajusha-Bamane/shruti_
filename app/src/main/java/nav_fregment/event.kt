@@ -1,20 +1,28 @@
 package nav_fregment
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.myapplication.R
-import com.example.myapplication.adapter_contact
+import com.example.myapplication.adapter.adapter_contact
 import com.example.myapplication.databinding.FragmentEventBinding
-import com.example.myapplication.event_structure
+import com.example.myapplication.moduel.event_viewmodel
 
 
 @Suppress()
 class event : Fragment() {
-lateinit var binding: FragmentEventBinding
+    val adapter = adapter_contact(
+        { eventId -> /* Do nothing */ }, false // isEventForMam
+    )
+
+    lateinit var binding: FragmentEventBinding
+    private lateinit var viewModel: event_viewmodel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,20 +39,26 @@ lateinit var binding: FragmentEventBinding
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val arratcontact = ArrayList<event_structure>()
-
-        arratcontact.add(event_structure(R.drawable.img_3,"nothing","15-02-2002","nothing"))
-        arratcontact.add(event_structure(R.drawable.img_3,"nothing","15-02-2002","nothing"))
-        arratcontact.add(event_structure(R.drawable.img_3,"nothing","15-02-2002","nothing"))
-        arratcontact.add(event_structure(R.drawable.img_3,"nothing","15-02-2002","nothing"))
-        arratcontact.add(event_structure(R.drawable.img_3,"nothing","15-02-2002","nothing"))
-        arratcontact.add(event_structure(R.drawable.img_3,"nothing","15-02-2002","nothing"))
 
         binding.eventRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.eventRecyclerView.adapter = adapter_contact(requireContext(), arratcontact)
+        binding.progressBar.visibility=View.VISIBLE
+        binding.eventRecyclerView.adapter = adapter
+        viewModel= ViewModelProvider(this).get(event_viewmodel::class.java)
+
+        viewModel.userlist.observe(viewLifecycleOwner, {
+            adapter.update_event(it)
+            binding.progressBar.visibility=View.GONE
+        })
+
+
+
+
+
+
     }
 
 
