@@ -12,6 +12,7 @@ import nav_fregment.aboutus
 import nav_fregment.event
 import nav_fregment.home
 import nav_fregment.profile
+import nav_fregment.student_volunter
 import nav_fregment.volunter
 
 
@@ -28,9 +29,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottnavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.about -> fregmemt(aboutus(), true)
-                R.id.volunter -> fregmemt(volunter(), false)
-                R.id.home -> fregmemt(home(), true)
+                R.id.about -> fregmemt(aboutus(), false)
+                R.id.volunter -> fregmemt(student_volunter(), false)
+                R.id.home -> fregmemt(volunter(), true)
                 R.id.events -> fregmemt(event(), false)
                 R.id.profile -> fregmemt(profile(), false)
             }
@@ -82,14 +83,14 @@ class MainActivity : AppCompatActivity() {
 
 
 
-    fun fregmemt(fragment: Fragment, flag: Boolean) {
-        val trasnaction = supportFragmentManager.beginTransaction()
+    private fun fregmemt(fragment: Fragment, flag: Boolean) {
+        val transaction = supportFragmentManager.beginTransaction()
         if (flag) {
-            trasnaction.add(binding.relative.id, fragment)
+            transaction.replace(binding.relative.id, fragment) // Use replace here
         } else {
-            trasnaction.replace(binding.relative.id, fragment)
+            transaction.replace(binding.relative.id, fragment)
         }
-        trasnaction.commit()
+        transaction.commit()
     }
 
 

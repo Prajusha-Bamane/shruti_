@@ -2,24 +2,24 @@ package nav_fregment
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.adapter.volunter_adapter
+import com.example.myapplication.databinding.ErrorDialogBinding
 import com.example.myapplication.databinding.FragmentVolunterBinding
 import com.example.myapplication.event.event_for_mam
 import com.example.myapplication.moduel.volunter_viewmodel
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.example.myapplication.databinding.ErrorDialogBinding
-import android.net.Uri
-import androidx.activity.result.ActivityResultLauncher
 import com.example.myapplication.repo.volunter_repo
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import volunter_viewmodelFactory
 
 class volunter : Fragment() {
@@ -41,9 +41,10 @@ class volunter : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewModel: volunter_viewmodel by viewModels {
+        val viewModel: volunter_viewmodel by activityViewModels {
             volunter_viewmodelFactory(repository)
         }
+        viewModel.getStudentsFromFirestore()
 
         binding.myButton.setOnClickListener {
             val intent = Intent(requireContext(), event_for_mam::class.java)
@@ -78,18 +79,30 @@ class volunter : Fragment() {
                 showErrorDialog(errorMessage)
             }
         }
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading && viewModel.isLoading.hasActiveObservers()) { // Check for active observers
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+
+
+
+
 
         pickExcelFileLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    excelFileUri = result.data?.data
-                    excelFileUri?.let { uri ->
-                        val inputStream = requireContext().contentResolver.openInputStream(uri)
-                        if (inputStream != null) {
-                            viewModel.loadStudentsFromExcel(inputStream) // Just call the function
-                        }
+            if (result.resultCode == Activity.RESULT_OK) {
+                excelFileUri = result.data?.data
+                excelFileUri?.let { uri ->
+                    val inputStream = requireContext().contentResolver.openInputStream(uri)
+                    if (inputStream != null) {
+                        viewModel.uploadExcelAndStoreData(inputStream) // Call the new function
                     }
                 }
             }
+        }
     }
 
     private fun showErrorDialog(errorMessage: String) {
@@ -117,6 +130,9 @@ class volunter : Fragment() {
 
         dialog.show()
     }
+
+
+
 
 
 }

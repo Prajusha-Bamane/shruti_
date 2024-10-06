@@ -50,9 +50,11 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage.ktx)
-    testImplementation(libs.junit)
+  implementation(libs.firebase.firestore)
+  testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+  implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     implementation ("com.google.code.gson:gson:2.10")
     implementation("androidx.core:core-ktx:1.8.0")
