@@ -5,7 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".event.Update_event">
+    tools:context=".event.add_data_fragment">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -75,6 +76,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:hint="Date"
+                        android:inputType="date"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout">
@@ -110,27 +112,26 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/buttonUpdate"
+                        android:id="@+id/buttonAdd"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="Update"
+                        android:layout_marginTop="24dp"
+                        android:text="Add"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/imageCardView" />
 
-
                     <ProgressBar
-                        android:id="@+id/progressBar"
+                        android:id="@+id/progress_bar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:indeterminateTint="@color/white"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>

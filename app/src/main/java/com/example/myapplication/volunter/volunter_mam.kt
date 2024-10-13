@@ -1,4 +1,4 @@
-package nav_fregment
+package com.example.myapplication.volunter
 
 import android.app.Activity
 import android.content.Intent
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.adapter.volunter_adapter
 import com.example.myapplication.databinding.ErrorDialogBinding
 import com.example.myapplication.databinding.FragmentVolunterBinding
-import com.example.myapplication.event.event_for_mam
+import com.example.myapplication.man_side.mam_side
 import com.example.myapplication.moduel.volunter_viewmodel
 import com.example.myapplication.repo.volunter_repo
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -46,10 +46,6 @@ class volunter : Fragment() {
         }
         viewModel.getStudentsFromFirestore()
 
-        binding.myButton.setOnClickListener {
-            val intent = Intent(requireContext(), event_for_mam::class.java)
-            startActivity(intent)
-        }
 
         binding.addbutton.setOnClickListener {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {

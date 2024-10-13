@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.firebase.storage.ktx)
   implementation(libs.firebase.firestore)
+  implementation(libs.androidx.ui.desktop)
   testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -77,8 +78,13 @@ dependencies {
 
     implementation("androidx.room:room-runtime:2.5.2")
     annotationProcessor("androidx.room:room-compiler:2.5.2")
-    implementation("androidx.room:room-ktx:2.5.2")
+    implementation("androidx.room:room-ktx:2.6.1")
 
+  implementation(libs.google.firebase.bom)
 
+  implementation ("com.google.firebase:firebase-firestore-ktx")
+
+  implementation(platform("com.google.firebase:firebase-bom:32.2.3")) // Firebase BOM
+  implementation("com.google.firebase:firebase-messaging-ktx")
 
 }

@@ -12,5 +12,6 @@
     <string name="add_image">Add image</string>
     <string name="select_event_image">nothing\n</string>
     <string name="event_image">event_image\n</string>
+    <string name="event_channel">event\n</string>
 
 </resources>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Contact" />
+    <item
+        android:id="@+id/nav_support"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Suport" />
+    <item
+        android:id="@+id/nav_presenty"
+        android:icon="@drawable/baseline_back_hand_24"
+        android:title="Presenty" />
+    <item
+        android:id="@+id/regester"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Regester" />
+    <item
+        android:id="@+id/ForgetPassword"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Forget Password"
+        android:visible="false" />
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/baseline_logout_24"
+        android:title="logout" />
+</menu>

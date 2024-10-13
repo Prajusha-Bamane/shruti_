@@ -1,17 +1,17 @@
 package com.example.myapplication.event
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
-import com.example.myapplication.R
-import com.example.myapplication.databinding.ActivityUpdateEventBinding
+import com.example.myapplication.databinding.FragmentUpdateEventFragmentBinding
 import com.example.myapplication.moduel.event_structure
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,38 +19,34 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import android.app.Activity
-import android.view.View
 
-class Update_event : AppCompatActivity() {
-  lateinit var binding: ActivityUpdateEventBinding
+class update_event_fragment : Fragment() {
+
+  private lateinit var binding: FragmentUpdateEventFragmentBinding
   private var selectedImageUri: Uri? = null
-  private lateinit var storageRef: StorageReference
+  private lateinit var storageRef:StorageReference
   private lateinit var eventId: String
 
-  private val resultLauncher =
-    registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-      if (result.resultCode == Activity.RESULT_OK) {
-        val data: Intent? = result.data
-        selectedImageUri = data?.data
-        binding.imageView.setImageURI(selectedImageUri)
-      }
+  private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    if (result.resultCode == Activity.RESULT_OK) {
+      val data: Intent? = result.data
+      selectedImageUri = data?.data
+      binding.imageView.setImageURI(selectedImageUri)
     }
+  }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    binding = ActivityUpdateEventBinding.inflate(layoutInflater)
-    super.onCreate(savedInstanceState)
-    enableEdgeToEdge()
-    setContentView(binding.root)
-    ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-      val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-      v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-      insets
-    }
+  override fun onCreateView(
+    inflater: LayoutInflater, container: ViewGroup?,
+    savedInstanceState: Bundle?
+  ): View {
+    binding = FragmentUpdateEventFragmentBinding.inflate(inflater, container, false)
+    return binding.root
+  }
 
-    eventId = intent.getStringExtra("eventId") ?: ""
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
 
-
+    eventId = arguments?.getString("eventId") ?: ""
     storageRef = FirebaseStorage.getInstance().reference
 
     if (eventId.isNotEmpty()) {
@@ -58,28 +54,21 @@ class Update_event : AppCompatActivity() {
       val eventRef = database.getReference("Event").child(eventId)
 
       eventRef.addListenerForSingleValueEvent(object : ValueEventListener {
-        override fun onDataChange(snapshot: DataSnapshot) {
-          if (snapshot.exists()) {
-            val event = snapshot.getValue(event_structure::class.java)
-            // Populate UI with event data
-            binding.editTextTitle.setText(event?.title)
-            binding.editTextDescription.setText(event?.description)
-            binding.editTextDate.setText(event?.date)
-            if (event?.image != null) {
-              Glide.with(this@Update_event)
-                .load(event.image)
-                .into(binding.imageView)
-            }
+        override fun onDataChange(snapshot: DataSnapshot) {if (snapshot.exists()) {
+          val event = snapshot.getValue(event_structure::class.java)
+          binding.editTextTitle.setText(event?.title)
+          binding.editTextDescription.setText(event?.description)
+          binding.editTextDate.setText(event?.date)
+          if (event?.image != null) {
+            Glide.with(requireContext())
+              .load(event.image)
+              .into(binding.imageView)
           }
+        }
         }
 
         override fun onCancelled(error: DatabaseError) {
-          // Handle errors
-          Toast.makeText(
-            this@Update_event,
-            "Failed to fetch event data",
-            Toast.LENGTH_SHORT
-          ).show()
+          Toast.makeText(context, "Failed to fetch event data", Toast.LENGTH_SHORT).show()
         }
       })
 
@@ -87,15 +76,12 @@ class Update_event : AppCompatActivity() {
         updateEventData()
       }
 
-
-
       binding.imageView.setOnClickListener {
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         resultLauncher.launch(intent)
       }
     }
-
   }
 
   private fun updateEventData() {
@@ -103,7 +89,7 @@ class Update_event : AppCompatActivity() {
     val updatedDescription = binding.editTextDescription.text.toString()
     val updatedDate = binding.editTextDate.text.toString()
     val progressBar = binding.progressBar
-    progressBar.visibility = android.view.View.VISIBLE
+    progressBar.visibility = View.VISIBLE
 
     if (selectedImageUri != null) {
       val imageRef = storageRef.child("images/$eventId")
@@ -126,14 +112,9 @@ class Update_event : AppCompatActivity() {
           val downloadUri = task.result
           updateEventInDatabase(eventId, updatedTitle, updatedDescription, updatedDate, downloadUri)
         } else {
-          Toast.makeText(
-            this@Update_event,
-            "Failed to upload image",
-            Toast.LENGTH_SHORT
-          ).show()
+          Toast.makeText(context, "Failed to upload image", Toast.LENGTH_SHORT).show()
           progressBar.visibility = View.GONE
-        }
-      }
+        }}
     } else {
       val database = FirebaseDatabase.getInstance()
       val eventRef = database.getReference("Event").child(eventId)
@@ -151,21 +132,18 @@ class Update_event : AppCompatActivity() {
               updatedDate,
               currentImageUrl?.let { Uri.parse(it) })
           } else {
-            Toast.makeText(this@Update_event, "Event not found", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Event not found", Toast.LENGTH_SHORT).show()
             progressBar.visibility = View.GONE
           }
         }
 
         override fun onCancelled(error: DatabaseError) {
-          // Handle errors
-          Toast.makeText(this@Update_event, "Failed to fetch event data", Toast.LENGTH_SHORT).show()
+          Toast.makeText(context, "Failed to fetch event data", Toast.LENGTH_SHORT).show()
           progressBar.visibility = View.GONE
         }
       })
     }
-
   }
-
 
   private fun updateEventInDatabase(
     eventId: String,
@@ -181,13 +159,12 @@ class Update_event : AppCompatActivity() {
     val updatedEvent = event_structure(date, description, title, imageUrl?.toString(), eventId)
     eventRef.setValue(updatedEvent)
       .addOnSuccessListener {
-        Toast.makeText(this@Update_event, "Event updated", Toast.LENGTH_SHORT).show()
-        finish()
+        Toast.makeText(context, "Event updated", Toast.LENGTH_SHORT).show()
+        // Handle navigation or other actions after successful update
         progressBar.visibility = View.GONE
-
       }
       .addOnFailureListener {
-        Toast.makeText(this@Update_event, "Failed to update event", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Failed to update event", Toast.LENGTH_SHORT).show()
         progressBar.visibility = View.GONE
       }
   }

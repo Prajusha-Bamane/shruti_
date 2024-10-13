@@ -13,7 +13,6 @@ import nav_fregment.event
 import nav_fregment.home
 import nav_fregment.profile
 import nav_fregment.student_volunter
-import nav_fregment.volunter
 
 
 class MainActivity : AppCompatActivity() {
@@ -31,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.about -> fregmemt(aboutus(), false)
                 R.id.volunter -> fregmemt(student_volunter(), false)
-                R.id.home -> fregmemt(volunter(), true)
+                R.id.home -> fregmemt(home(), true)
                 R.id.events -> fregmemt(event(), false)
                 R.id.profile -> fregmemt(profile(), false)
             }

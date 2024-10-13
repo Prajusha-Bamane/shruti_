@@ -43,25 +43,26 @@ class event : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding.eventRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.progressBar.visibility=View.VISIBLE
         binding.eventRecyclerView.adapter = adapter
-        viewModel= ViewModelProvider(this).get(event_viewmodel::class.java)
+        viewModel = ViewModelProvider(this).get(event_viewmodel::class.java)
 
-        viewModel.userlist.observe(viewLifecycleOwner, {
+        // Observe isLoading LiveData
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.progressBar.visibility = View.VISIBLE
+            } else {
+                binding.progressBar.visibility = View.GONE
+            }
+        }
+
+        viewModel.userlist.observe(viewLifecycleOwner) {
             adapter.update_event(it)
-            binding.progressBar.visibility=View.GONE
-        })
-
-
-
-
-
-
+        }
+    }
     }
 
 
-}
+
 
 

@@ -13,11 +13,15 @@ class event_viewmodel: ViewModel() {
   private val _userlist = MutableLiveData<List<event_structure>>()
   val userlist: LiveData<List<event_structure>> = _userlist
 
+  private val _isLoading = MutableLiveData<Boolean>(false)
+  val isLoading: LiveData<Boolean> = _isLoading
+
   init {
     fetchEvents()
   }
 
   fun fetchEvents() {
+    _isLoading.value = true
     val eventsReference = FirebaseDatabase.getInstance().getReference("Event")
     eventsReference.addValueEventListener(object : ValueEventListener {
       override fun onDataChange(snapshot: DataSnapshot) {
@@ -29,10 +33,12 @@ class event_viewmodel: ViewModel() {
           }
         }
         _userlist.value = events
+        _isLoading.value = false
       }
 
       override fun onCancelled(error: DatabaseError) {
         // Handle error
+        _isLoading.value = false
       }
     })
   }
